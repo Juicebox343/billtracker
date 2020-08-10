@@ -1,38 +1,55 @@
-.App {
-  text-align: center;
+*{
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html, body{
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App{
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas: 
+  'newBill newBill'
+  'upcomingBills searchBills'
+  'calendarBills calendarBills'
+  'allBills allBills';
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.section{
+  box-shadow: 2px 2px 2px rgb(174, 174, 174), 
+  -2px -2px 2px rgb(238, 238, 238);
+  margin: 0.2rem;
+  padding: 0.4rem;
+}
+
+.addBillSection{
+  grid-area: newBill;
+}
+
+.addBillForm{
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-evenly;
+  padding: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.upcomingBillsSection{
+  grid-area: upcomingBills;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.searchBillsSection{
+  grid-area: searchBills;
+}
+
+.billCalendarSection{
+  grid-area: calendarBills;
+}
+
+.allBillsSection{
+  grid-area: allBills;
 }

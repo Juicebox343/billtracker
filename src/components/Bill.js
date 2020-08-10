@@ -3,10 +3,17 @@ import React from 'react';
 class Bill extends React.Component {
 
 render(){
+
+    let billDetails = {...this.props.details}
     return(
 
-            <span>I'm a bill<button>Edit Me</button></span>
-
+            <div>
+                <span>{billDetails.billTitle}</span>
+                <span>{billDetails.dueDate}</span>
+                <span>{billDetails.billTotal}</span>
+                <span>{billDetails.recurTiming}</span>
+                <button>Edit Me</button>
+            </div>
     )
 }
 }

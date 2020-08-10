@@ -4,7 +4,7 @@ class BillCalendar extends React.Component {
 
 render(){
     return(
-        <section>
+        <section className='section billCalendarSection'>
             <h3>Calendar of Bills</h3>
             <p>A calendar made in CSS</p>
         </section>

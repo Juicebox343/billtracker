@@ -6,7 +6,7 @@ class SearchBills extends React.Component {
 render(){
     return(
 
-        <section>
+        <section className='section searchBillsSection'>
             <h3>Search All Bills</h3>
             <input type='text' placeholder='Search Bills'/> 
             <div>

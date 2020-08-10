@@ -5,11 +5,14 @@ class UpcomingBills extends React.Component {
 
 render(){
     return(
-        <section>
+        <section className='section upcomingBillsSection'>
             <h3>Upcoming Bills</h3>
             <ol>
-                <li><Bill/><label htmlFor='bill1'>Paid</label><input type='checkbox' id='bill1'/></li>
-                <li><Bill/><label htmlFor='bill2'>Paid</label><input type='checkbox' id='bill2'/></li>
+                {Object.keys(this.props.allBills).map(bill => {
+                    let details = this.props.allBills[bill];
+                    return <li><Bill details={details}/></li>
+                })}
+                {/* <li><Bill/><label htmlFor='allBill1'>Paid</label><input type='checkbox' id='allBill1'/></li> */}
             </ol>
         </section>
         
