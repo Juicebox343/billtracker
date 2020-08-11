@@ -13,6 +13,7 @@ render(){
                 <span>{billDetails.billTotal}</span>
                 <span>{billDetails.recurTiming}</span>
                 <button>Edit Me</button>
+                <button>Delete Me</button>
             </div>
     )
 }

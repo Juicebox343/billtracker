@@ -17,12 +17,18 @@ class AddBills extends React.Component {
 handleSubmit = (e) => {
     e.preventDefault();
     this.props.addBillFunction(this.state);
+    this.setState({ 
+        billTitle: '',
+        dueDate: '',
+        billTotal: '',
+        isRecurring: true,
+        recurTiming: ''
+    });
 }
 
 handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.name === 'isRecurring' ? e.target.checked : e.target.value;
-
     this.setState({[name]: value})
 }
 
