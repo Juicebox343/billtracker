@@ -54,29 +54,39 @@ html, body{
   grid-area: allBills;
 }
 
+.calendar{
+  width: 350px;
+}
+
 .calendarTable{
   text-align: center;
   vertical-align: middle;
   border-spacing: 0;
   box-shadow: 0px 0px 3px rgba(0, 77, 0, 0.178);
- 
+  width: 350px;
 }
 
-.calendarTable thead tr{
+table{
+  width: 350px;
+}
 
+td, th{
+  width: 50px;
+  height: 50px;
+}
+
+.calendarTable thead{
   background-color: green;
 }
 
 .calendarTable td{
   border: none;
-  width: 50px;
-  height: 50px;
+
   transition: all linear 0.05s;
 }
 
 .calendarTable th{
-  width: 50px;
-  height: 50px;
+
   color: white;
 }
 
@@ -87,6 +97,11 @@ html, body{
 
 .calendar-nav{
   font-size: 1.8rem;
+  background-color: green;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
 }
 
 .today{

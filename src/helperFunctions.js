@@ -26,11 +26,11 @@ export function populateMonth(numMonth){
         month[10] = "November";
         month[11] = "December";
 
-    return  month[numMonth-1]
+    return  month[numMonth]
 }
 
 export function daysInMonth (month, year) {
-    return new Date(year, month, 0).getDate();
+    return new Date(year, month+1, 0).getDate();
 }
 
 export function firstDayInMonth (month, year) {

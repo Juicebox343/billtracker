@@ -14,29 +14,45 @@ class App extends React.Component {
     super(props);
     this.state = {
       bills: [],
-      month: null,
-      day: null,
-      date: null,
-      hour: null
+      dateObject: {}
     };
   }
 
-  setTime = () =>{
+  setInitialTime = () =>{
     let rightNow = new Date();
-    this.setState({
-      month: rightNow.getMonth() + 1,
-      day:  rightNow.getDay(),
+    let dateObject = {
+      day: rightNow.getDay(),
+      month: rightNow.getMonth(),
       date: rightNow.getDate(),
       hour: rightNow.getHours(),
+      year: rightNow.getFullYear(),
       daysInMonth: daysInMonth(rightNow.getMonth(), rightNow.getFullYear()),
       firstDayInMonth: firstDayInMonth(rightNow.getMonth(), rightNow.getFullYear())
+    }
+    this.setState({
+      dateObject: {...dateObject}
     });
-    // setTimeout(this.setTime, 3600000)
   }
 
-  setMonth = (monthIndex) => {
-    this.setState({month: monthIndex + 1})
+  setNewMonth = (monthIndex) => {
+    let newDate = new Date();
+    newDate.setMonth(monthIndex)
+    console.log(newDate.getMonth())
+
+    // let dateObject = this.state.dateObject;
+ 
+    let dateObject = {
+      day: newDate.getDay(),
+      month: newDate.getMonth(),
+      date: newDate.getDate(),
+      hour: newDate.getHours(),
+      year: newDate.getFullYear(),
+      daysInMonth: daysInMonth(monthIndex, newDate.getFullYear()),
+      firstDayInMonth: firstDayInMonth(monthIndex, newDate.getFullYear())
+    }
+    this.setState({dateObject})
   }
+
 
   addBill = (newData) => {
     let bills = [...this.state.bills, newData];
@@ -52,7 +68,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    this.setTime();
+    this.setInitialTime();
   }
 
   render(){
@@ -61,7 +77,7 @@ class App extends React.Component {
         <AddBills addBillFunction={this.addBill}/>
         <UpcomingBills allBills={this.state.bills}/>
         <SearchBills allBills={this.state.bills}/>
-        <BillCalendar allBills={this.state.bills} month={this.state.month} day={this.state.day} date={this.state.date} hour={this.state.hour} daysInMonth={this.state.daysInMonth} firstDayInMonth={this.state.firstDayInMonth} setMonth={this.setMonth}/>
+        <BillCalendar allBills={this.state.bills} dateObject={this.state.dateObject} setNewMonth={this.setNewMonth}/>
         <AllBills allBills={this.state.bills}/>
       </div>
     );

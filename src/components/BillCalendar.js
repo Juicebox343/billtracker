@@ -10,9 +10,10 @@ state = {
 MonthList = () =>{
     let monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     let months = [];
+    
     monthArray.map(month => {
         months.push(
-            <td key={month} className='calendar-month' onClick={e => {this.setMonth(month, monthArray)}}><span>{month}</span></td>
+            <td key={month} className='calendar-month' onClick={e => {this.setDateMonth(month, monthArray)}}><span>{month}</span></td>
         )
     })
 
@@ -47,9 +48,9 @@ MonthList = () =>{
 
 }
 
-setMonth = (month, monthArray) => {
+setDateMonth = (month, monthArray) => {
     let monthNo = monthArray.indexOf(month);
-    this.props.setMonth(monthNo)
+    this.props.setNewMonth(monthNo)
     this.setState({
         showMonthTable: !this.state.showMonthTable,
     })
@@ -61,7 +62,31 @@ showMonth = (e, month) => {
     })
 }
 
+year = () => {
+    return this.props.dateObject.year
+}
+
+    
+onPrev = () => {};
+onNext = () => {};
+
+    onPrev = () => { 
+        this.setState({
+          dateObject: this.state.dateObject.subtract(1, 'month')
+        });
+      };
+
+    onNext = () => {
+        this.setState({
+          dateObject: this.state.dateObject.add(1, 'month')
+        });
+      };
+
+
+
 render(){
+    let monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let dateObject = this.props.dateObject
 
     let daysOfWeekArray = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     let daysOfWeek = daysOfWeekArray.map(day => {
@@ -69,15 +94,15 @@ render(){
     });
     
     let blanks = [];
-    for (let i = 0; i < this.props.firstDayInMonth; i++) {
+    for (let i = 0; i < dateObject.firstDayInMonth; i++) {
       blanks.push(
         <td className="calendar-day empty">{""}</td>
       );
     }
 
     let daysInMonth = [];
-    for (let d = 1; d <= this.props.daysInMonth; d++) {
-        let today = d === this.props.date ? 'today' : '';
+    for (let d = 1; d <= dateObject.daysInMonth; d++) {
+        let today = d === dateObject.date ? 'today' : '';
       daysInMonth.push(
         <td key={d} className={`calendar-day ${today}`}>
           {d}
@@ -108,30 +133,35 @@ render(){
 
 
 
+
     return(
         <section className='section billCalendarSection'>
             <h3>Calendar View</h3>
+            <section className='calendar'>
+                <div className='calendar-nav' >
+                    <span onClick={e => {this.onPrev();}} class="calendar-button button-prev">&#8249;</span>
+                    <span onClick={e => { this.showMonth()}}>{monthArray[dateObject.month]}</span>
+                    <span >{this.year()}</span>
+                    <span onClick={e => {this.onNext();}} className="calendar-button button-next">&#8250;</span>
+
+                </div>
 
                 <table className='calendarTable'>
-                    <thead>
-                        <tr><th colspan='7' className='calendar-nav' onClick={e => { this.showMonth()}}>{populateMonth(this.props.month)}</th></tr>
-                    </thead>
                     <div className="calendar-date">
                         {this.state.showMonthTable && 
                         <this.MonthList />}
                     </div>
                     {!this.state.showMonthTable && 
-                    <div>
-                        <thead>
-                            <tr>{daysOfWeek}</tr>
-                        </thead>
-
-                        <tbody>
-                            {daysinmonth}
-                        </tbody>
-                    </div>}
+                        <div>
+                            <thead>
+                                <tr>{daysOfWeek}</tr>
+                            </thead>
+                            <tbody>
+                                {daysinmonth}
+                            </tbody>
+                        </div>}
                 </table>
-              
+            </section>              
         </section>
         
     )
