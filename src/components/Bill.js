@@ -7,14 +7,20 @@ render(){
     let billDetails = {...this.props.details}
     return(
 
-            <div>
-                <span>{billDetails.billTitle}</span>
-                <span>{billDetails.dueDate}</span>
-                <span>{billDetails.billTotal}</span>
-                <span>{billDetails.recurTiming}</span>
-                <button>Edit Me</button>
-                <button>Delete Me</button>
-                <button>Mark Me Done</button>
+            <div className='indiBill'>
+                <div>
+                    <span>{billDetails.billTitle}</span>
+                    <span>{billDetails.dueDate}</span>
+                    <span>{billDetails.billTotal}</span>
+                    <span>{billDetails.recurTiming}</span>
+                </div>
+                
+                <div>
+                    <button>E</button>
+                    <button>D</button>
+                    <button>C</button>
+                </div>
+               
             </div>
     )
 }

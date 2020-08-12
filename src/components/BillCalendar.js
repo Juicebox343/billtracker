@@ -122,21 +122,21 @@ render(){
                     <span >{this.year()}</span>
                 </div>
 
-                <table className='calendarTable'>
+                <div className='calendarthing'>
                     <div className="calendar-date">
                         {this.state.showMonthTable && 
                         <this.MonthList />}
                     </div>
                     {!this.state.showMonthTable && 
-                        <div>
+                        <table className='calendarTable'>
                             <thead>
                                 <tr>{daysOfWeek}</tr>
                             </thead>
                             <tbody>
                                 {daysinmonth}
                             </tbody>
-                        </div>}
-                </table>
+                        </table>}
+                </div>
             </section>              
         </section>
         

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -13,6 +14,7 @@ import firebase from './firebase';
 
 
 function App(){
+  const fakeData = require('./fakeBills.json');
 
   const [bills, setBills] = React.useState([]);
   const [dateObject, setDateObject] = React.useState({});
@@ -20,12 +22,13 @@ function App(){
 
   React.useEffect(() => {
     setInitialTime();
-    const fetchData = async () => {
-      const db = firebase.firestore();
-      const data = await db.collection("spells").get();
-      setBills(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-    };
-    fetchData();
+    setBills(fakeData)
+    // const fetchData = async () => {
+    //   const db = firebase.firestore();
+    //   const data = await db.collection("spells").get();
+    //   setBills(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+    // };
+    // fetchData();
   }, []);
 
 

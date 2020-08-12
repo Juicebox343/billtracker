@@ -1,0 +1,23 @@
+[
+    {
+      "billTitle": "Libsyn",
+      "dueDate": "10-11-2020",
+      "billTotal": 300,
+      "isRecurring": true,
+      "recurTiming": "monthly"
+    },
+    {
+      "billTitle": "Harry's Shave Club",
+      "dueDate": "8-20-2020",
+      "billTotal": 20,
+      "isRecurring": true,
+      "recurTiming": "monthly"
+    },
+    {
+    "billTitle": "Storage Unit",
+    "dueDate": "09-11-2020",
+    "billTotal": 61.50,
+    "isRecurring": true,
+    "recurTiming": "monthly"
+    }
+]
