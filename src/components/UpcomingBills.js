@@ -6,7 +6,7 @@ class UpcomingBills extends React.Component {
 render(){
     return(
         <section className='section upcomingBillsSection'>
-            <h3>Upcoming Bills</h3>
+            <h2>Upcoming Bills</h2>
             <ol>
                 {Object.keys(this.props.allBills).map(bill => {
                     let details = this.props.allBills[bill];

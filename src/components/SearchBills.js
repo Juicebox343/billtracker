@@ -7,7 +7,7 @@ render(){
     return(
 
         <section className='section searchBillsSection'>
-            <h3>Search All Bills</h3>
+            <h2>Search All Bills</h2>
             <input type='text' placeholder='Search Bills'/> 
             <div>
                 <h3>Search Results</h3>

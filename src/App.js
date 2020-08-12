@@ -1,24 +1,36 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
 import AddBills from './components/AddBills';
 import UpcomingBills from './components/UpcomingBills';
 import BillCalendar from './components/BillCalendar';
 import SearchBills from './components/SearchBills';
 import AllBills from './components/AllBills';
+import {SignIn} from './components/SignIn';
 import {daysInMonth, firstDayInMonth} from './helperFunctions';
+import firebase from './firebase';
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      bills: [],
-      dateObject: {}
+function App(){
+
+  const [bills, setBills] = React.useState([]);
+  const [dateObject, setDateObject] = React.useState({});
+
+
+  React.useEffect(() => {
+    setInitialTime();
+    const fetchData = async () => {
+      const db = firebase.firestore();
+      const data = await db.collection("spells").get();
+      setBills(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
     };
-  }
+    fetchData();
+  }, []);
 
-  setInitialTime = () =>{
+
+
+  const setInitialTime = () =>{
     let rightNow = new Date();
     let dateObject = {
       day: rightNow.getDay(),
@@ -29,12 +41,10 @@ class App extends React.Component {
       daysInMonth: daysInMonth(rightNow.getMonth(), rightNow.getFullYear()),
       firstDayInMonth: firstDayInMonth(rightNow.getMonth(), rightNow.getFullYear())
     }
-    this.setState({
-      dateObject: {...dateObject}
-    });
+    setDateObject({...dateObject})
   }
 
-  setNewMonth = (monthIndex) => {
+  const setNewMonth = (monthIndex) => {
     let newDate = new Date();
     newDate.setMonth(monthIndex)
     console.log(newDate.getMonth())
@@ -54,34 +64,31 @@ class App extends React.Component {
   }
 
 
-  addBill = (newData) => {
+  const addBill = (newData) => {
     let bills = [...this.state.bills, newData];
     this.setState({ bills })
   }
 
-  editBill = (modifiedData) => {
+  const editBill = (modifiedData) => {
 
   }
 
-  deleteBill = (oldData) => {
+  const deleteBill = (oldData) => {
 
   }
 
-  componentDidMount(){
-    this.setInitialTime();
-  }
-
-  render(){
     return (
       <div className="App">
-        <AddBills addBillFunction={this.addBill}/>
-        <UpcomingBills allBills={this.state.bills}/>
-        <SearchBills allBills={this.state.bills}/>
-        <BillCalendar allBills={this.state.bills} dateObject={this.state.dateObject} setNewMonth={this.setNewMonth}/>
-        <AllBills allBills={this.state.bills}/>
+        <Header/>
+        <AddBills addBillFunction={addBill}/>
+        <SearchBills allBills={bills}/>
+        <BillCalendar allBills={bills} dateObject={dateObject} setNewMonth={setNewMonth}/>
+        <UpcomingBills allBills={bills}/>
+        <AllBills allBills={bills}/>
+        <SignIn/>
+        
       </div>
     );
-  }
 }
 
 export default App;

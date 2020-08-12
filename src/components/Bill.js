@@ -14,6 +14,7 @@ render(){
                 <span>{billDetails.recurTiming}</span>
                 <button>Edit Me</button>
                 <button>Delete Me</button>
+                <button>Mark Me Done</button>
             </div>
     )
 }

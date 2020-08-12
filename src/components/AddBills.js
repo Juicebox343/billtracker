@@ -36,7 +36,7 @@ handleChange = (e) => {
 render(){
     return(
         <section className='section addBillSection'>
-            <h3>Add a Bill</h3>
+            <h2>Add a Bill</h2>
             <form className='addBillForm' onSubmit={this.handleSubmit}>
                 <div>
                     <label htmlFor='billTitle'>Bill Name</label>

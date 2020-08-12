@@ -1,5 +1,4 @@
 import React from 'react';
-import {populateWeekDay, populateMonth} from '../helperFunctions';
 
 class BillCalendar extends React.Component {
 
@@ -11,11 +10,11 @@ MonthList = () =>{
     let monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     let months = [];
     
-    monthArray.map(month => {
+    monthArray.map(month => 
         months.push(
             <td key={month} className='calendar-month' onClick={e => {this.setDateMonth(month, monthArray)}}><span>{month}</span></td>
         )
-    })
+    )
 
     let rows = [];
     let cells = [];
@@ -66,23 +65,6 @@ year = () => {
     return this.props.dateObject.year
 }
 
-    
-onPrev = () => {};
-onNext = () => {};
-
-    onPrev = () => { 
-        this.setState({
-          dateObject: this.state.dateObject.subtract(1, 'month')
-        });
-      };
-
-    onNext = () => {
-        this.setState({
-          dateObject: this.state.dateObject.add(1, 'month')
-        });
-      };
-
-
 
 render(){
     let monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -131,19 +113,13 @@ render(){
         return <tr>{d}</tr>
     })
 
-
-
-
     return(
         <section className='section billCalendarSection'>
-            <h3>Calendar View</h3>
+            <h2>Calendar View</h2>
             <section className='calendar'>
                 <div className='calendar-nav' >
-                    <span onClick={e => {this.onPrev();}} class="calendar-button button-prev">&#8249;</span>
                     <span onClick={e => { this.showMonth()}}>{monthArray[dateObject.month]}</span>
                     <span >{this.year()}</span>
-                    <span onClick={e => {this.onNext();}} className="calendar-button button-next">&#8250;</span>
-
                 </div>
 
                 <table className='calendarTable'>
